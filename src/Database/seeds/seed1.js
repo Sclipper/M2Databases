@@ -1,1 +1,1 @@
-// Added just for structure
+// Used for populating database

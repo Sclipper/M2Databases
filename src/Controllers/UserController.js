@@ -1,7 +1,11 @@
+import { Router } from 'express'
 import User from '../Models/User'
 
-export const getUser = (req, res) => {
-  const user = User.findById()
-  console.log('returning user from user model')
-  return user
-}
+const UserController = Router()
+
+UserController.get('/show', async (req, res) => {
+  const user = await User.findById(1)
+  res.send(user)
+})
+
+export default UserController

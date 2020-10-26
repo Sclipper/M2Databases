@@ -1,5 +1,12 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-require('@babel/register')({ presets: ['@babel/preset-env'] })
+import express from 'express'
+// import cors from 'cors'
 
-// Import the rest of our application.
-module.exports = require('./server.js')
+// import { routes } from './src/routes'
+import UserController from './src/Controllers/UserController'
+import 'dotenv/config'
+
+const app = express()
+
+app.use('/user', UserController)
+
+app.listen(8081, () => console.log('Example app listening on port 8080!'))

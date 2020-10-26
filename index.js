@@ -1,7 +1,4 @@
 import express from 'express'
-// import cors from 'cors'
-
-// import { routes } from './src/routes'
 import UserController from './src/Controllers/UserController'
 import 'dotenv/config'
 

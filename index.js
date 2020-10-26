@@ -6,4 +6,4 @@ const app = express()
 
 app.use('/user', UserController)
 
-app.listen(8081, () => console.log('Example app listening on port 8080!'))
+app.listen(8080, () => console.log('Example app listening on port 8080!'))

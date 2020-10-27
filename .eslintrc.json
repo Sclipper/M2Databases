@@ -17,6 +17,7 @@
     "object-curly-newline": ["error", { "multiline": true }],
     "global-require": "off",
     "no-use-before-define": ["error", { "functions": false }],
+    "linebreak-style": "off",
     "quotes": [
       "error",
       "single",

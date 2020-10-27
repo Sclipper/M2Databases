@@ -1,9 +1,9 @@
 {
-  "name": "M2Databases",
+  "name": "m2databases",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/Sclipper/M2Databases.git",
-  "author": "Sclipper <mkopoi3@gmail.com>",
+  "author": "Tsvetomir & Andrian",
   "scripts": {
     "start": "nodemon --exec babel-node index.js"
   },
@@ -13,13 +13,13 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "eslint": "^7.12.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.6"
+    "express": "^4.17.1"
   },
   "devDependencies": {
+    "nodemon": "^2.0.6",
     "@babel/core": "^7.12.3",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-config-airbnb-base": "^14.2.0",
     "@babel/node": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/register": "^7.12.1"

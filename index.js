@@ -6,17 +6,6 @@ import CreditCardController from './src/Controllers/CreditCardController'
 
 const app = express()
 
-// const knex = connectToDatabase()
-// const testF = async () => {
-//   try {
-//     const a = await knex.column('first_name').select().from('user')
-//     console.log(a)
-//     return a
-//   } catch (err) {
-//     console.log('err', err)
-//   }
-// }
-// testF()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())

@@ -5,10 +5,12 @@ const CreditCardController = Router()
 
 CreditCardController.post('/store', async (req, res) => {
   try {
-    const variable = await CreditCard.store()
-    // res.send()
+    const { userId, cardholderName, expiryMonth, expiryYear, securityCode } = req?.body
+    await CreditCard
+      .store(userId, cardholderName, expiryMonth, expiryYear, securityCode)
+    res.send(`Successfully added card: ${userId}, ${cardholderName}, ${expiryMonth}, ${expiryYear}, ***`)
   } catch (err) {
-    console.log('error getting all products', err)
+    console.log('Error creting new card', err)
     res.send(err)
   }
 })

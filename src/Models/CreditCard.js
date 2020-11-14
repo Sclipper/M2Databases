@@ -3,11 +3,13 @@ import { connectToDatabase } from '../Utils/connectToDatabase'
 const knex = connectToDatabase()
 
 class CreditCard {
-  async store (userId, cardholder_name, expiry_month, expiry_year, security_code) {
+  async store (userId, cardholderName, expiryMonth, expiryYear, securityCode) {
     try {
-      knex.raw('Call create_new_card(userId, cardholder_name, expiry_month, expiry_year, security_code)')
+      const card = await knex.raw('Call create_credit_card(?, ?, ?, ?, ?)', [userId, cardholderName, expiryMonth, expiryYear, securityCode])
+      return card
     } catch (err) {
       console.log('err', err)
+      return err
     }
   }
 }

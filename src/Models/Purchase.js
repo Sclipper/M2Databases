@@ -1,10 +1,11 @@
-// import { connectToDatabase } from '../Utils/connectToDatabase'
+import { connectToDatabase } from '../Utils/connectToDatabase'
 
-// const knex = connectToDatabase()
-// const usefullColumns = ['id', 'item_name', 'description', 'unit_price', 'existing_stock', 'average_rating']
+const knex = connectToDatabase()
 
-// class Purchase {
-//   async getAll (userId) {
-//     const purchase = await knex.column(usefullColumns).select().from('product')
-//     return purchase
-//   }
+class Purchase {
+  async getAllByUserId (userId) {
+    return knex('purchase').where({ user_id: userId, paid: 1 }).select()
+  }
+}
+
+export default new Purchase()

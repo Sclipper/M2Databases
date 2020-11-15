@@ -1,17 +1,18 @@
-// import { connectToDatabase } from '../Utils/connectToDatabase'
+import { connectToDatabase } from '../Utils/connectToDatabase'
 
-// const knex = connectToDatabase()
+const knex = connectToDatabase()
 
-// class Invoice {
-//   async create (purchaseId) {
-//     try {
-//       const card = await knex.raw('Call create_credit_card(?, ?, ?, ?, ?)', [userId, cardholderName, expiryMonth, expiryYear, securityCode])
-//       return card
-//     } catch (err) {
-//       console.log('err', err)
-//       return err
-//     }
-//   }
-// }
+class Invoice {
+  async create (purchaseId, creditCardId) {
+    const purchasePaid = await knex('purchase').where({ id: purchaseId }).select('paid')
+    if (purchasePaid[0].paid) {
+      const e = new Error('Purchase is already paid')
+      throw e
+    } else {
+      const card = await knex.raw('Call invoice_insert(?, ?)', [purchaseId, creditCardId])
+      return card
+    }
+  }
+}
 
-// export default new Invoice()
+export default new Invoice()

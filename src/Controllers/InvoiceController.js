@@ -5,12 +5,11 @@ const InvoiceController = Router()
 
 InvoiceController.post('/store', async (req, res) => {
   try {
-    const { purchaseId } = req?.body
-    await Invoice.create(purchaseId)
-    // res.send(`Successfully added card: ${userId}, ${cardholderName}, ${expiryMonth}, ${expiryYear}, ***`)
+    const { purchaseId, creditCardId } = req?.body
+    await Invoice.create(purchaseId, creditCardId)
+    res.send(`Successfully created invoice with Purchase ID: ${purchaseId}`)
   } catch (err) {
-    console.log('Error creting new card', err)
-    res.send(err)
+    res.send(`Error creting new invoice: ${err}`)
   }
 })
 

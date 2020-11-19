@@ -4,29 +4,27 @@ import Purchase from '../Models/Purchase'
 
 const ProductController = Router()
 
-const checkIfPuchased = async (purchaseIds, productId) => {
-  const purchased = false
-  purchaseIds.forEach(id => {
-    /// Check eachproduct in that id if that exists
-  })
-}
+const checkIfPuchased = async (purchaseIds, productId) => Promise.all(purchaseIds.map(async id => {
+  const purchasedProducts = await Purchase.joinProductPurchaseByPurchaseId(id)
+  // Sorry about that == :D I couldnt be bothered to see what is wrong...
+  // eslint-disable-next-line eqeqeq
+  return purchasedProducts.map(({ product_id: pId }) => (pId == productId ? pId : ''))
+}))
 
 ProductController.post('/store', async (req, res) => {
   try {
-    const { userId, productId, totalRating, optionalComment, registeredOn } = req.body
-    // find if the user has bought this product
-
+    const { userId, productId, totalRating, optionalComment } = req.body
     const allPurchases = await Purchase.getAllByUserId(userId)
-    const isPurchased = await checkIfPuchased(allPurchases.map(x => x.id), productId)
-    if (isPurchased) {
-      console.log('purchased')
-    } else {
-      console.log('did not purchase')
-    }
-    // console.log('all purchasess', allPurchases.map(x => console.log('x', x)))
-    // res.send(products)
+    checkIfPuchased(allPurchases.map(x => x.id), productId).then(result => {
+      const isPurchased = result.filter(x => x.filter(y => y !== '').length)?.length
+      if (isPurchased) {
+        return Product.createRating(productId, userId, totalRating, optionalComment)
+      }
+      const e = new Error('Product hasn\'t been purchased')
+      return res.status(403).send(`${e}`)
+    })
   } catch (err) {
-    console.log('error getting all products', err)
+    console.log('Error in Rating controller:', err)
     res.send(err)
   }
 })

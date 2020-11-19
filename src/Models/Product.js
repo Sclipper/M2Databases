@@ -15,6 +15,10 @@ class Product {
     )
     return result
   }
+
+  async createRating (productId, userId, totalRating, optionalComment) {
+    return knex.raw('Call create_rating(?, ?, ?, ?)', [productId, userId, totalRating, optionalComment])
+  }
 }
 
 export default new Product()

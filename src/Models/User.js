@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 class User {
   findById (id) {
     console.log('querry the database for the particular id')

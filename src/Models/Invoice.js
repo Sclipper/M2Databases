@@ -1,4 +1,5 @@
 import { connectToDatabase } from '../Utils/connectToDatabase'
+import 'dotenv/config'
 
 const knex = connectToDatabase()
 

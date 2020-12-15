@@ -1,4 +1,5 @@
 import { connectToDatabase } from '../Utils/connectToDatabase'
+import 'dotenv/config'
 
 const knex = connectToDatabase()
 const usefullColumns = ['id', 'item_name', 'description', 'unit_price', 'existing_stock', 'average_rating']
